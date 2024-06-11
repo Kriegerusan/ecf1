@@ -10,26 +10,24 @@ class CheckoutController
     public function show_cart()
     {
 
-        foreach($_SESSION['cart'] as $value){
+        foreach ($_SESSION['cart'] as $value) {
             //var_dump($value);
 
-            $articleDetails = explode("," , $value['article']);
-            $this->totalArticle++; 
+            $articleDetails = explode(",", $value['article']);
+            $this->totalArticle++;
             $this->totalPrice += $articleDetails[1];
-            echo"
+            echo "
                 <tr>
-                    <td>". $articleDetails[0] ."</td>
-                    <td>". str_replace("." , "," , $articleDetails[1]) ." €</td>
+                    <td>" . $articleDetails[0] . "</td>
+                    <td>" . str_replace(".", ",", $articleDetails[1]) . " €</td>
                 </tr>
             ";
-
-
         }
     }
 
     public function get_totalPrice()
     {
-        return str_replace("." , "," , $this->totalPrice);
+        return str_replace(".", ",", $this->totalPrice);
     }
 
     public function get_totalArticle()
@@ -41,37 +39,33 @@ class CheckoutController
     {
         $products = "";
 
-        foreach($_SESSION['cart'] as $value)
-        {
+        foreach ($_SESSION['cart'] as $value) {
             $articleDetails = explode(",", $value['article']);
 
-            $products .= ($products? "," : "") . $articleDetails[0];
+            $products .= ($products ? "," : "") . $articleDetails[0];
         }
 
         $datas = array(
             'id_user' => $_SESSION['user']['id'],
             'products' => $products,
-            'total_price' => str_replace(",", "." , $price),
+            'total_price' => str_replace(",", ".", $price),
             'nb_products' => $articles
         );
 
         $checkout = new Checkout();
         $checkout->create($datas);
-        // echo $products;
-        // var_dump($_SESSION['user']);
     }
 
     public function get_order_by_user()
     {
         $checkout = new Checkout();
         return $checkout->get_order($_SESSION['user']['id']);
-
     }
 
     public function show_orders()
     {
         $orders = $this->get_order_by_user();
-        foreach($orders as $value){
+        foreach ($orders as $value) {
             echo "
                 <tr>
                     <td>" . $value['id'] . "</td>
@@ -81,6 +75,5 @@ class CheckoutController
                 </tr>
             ";
         }
-        
     }
 }

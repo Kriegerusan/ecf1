@@ -106,6 +106,6 @@ class ProductController
     public function update_product($datas)
     {
         $product = new Product();
-        $product->update($datas['id'],$datas);
+        $product->update($datas['id'], $datas);
     }
 }

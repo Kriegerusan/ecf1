@@ -26,16 +26,14 @@ class Product extends Connection implements iCRUD
     {
         $fields = "";
 
-        foreach($newDatas as $index => $value){
-            if($index == 'name'){
-                $fields .= ($fields? "," : "") . $index . "= '" . $value . "'";
-            }else{
-                if($index != "id"){
-                    $fields .= ($fields? "," : "") . $index . "=" . $value;
+        foreach ($newDatas as $index => $value) {
+            if ($index == 'name') {
+                $fields .= ($fields ? "," : "") . $index . "= '" . $value . "'";
+            } else {
+                if ($index != "id") {
+                    $fields .= ($fields ? "," : "") . $index . "=" . $value;
                 }
             }
-            
-            
         }
 
         $pdo = Connection::connect();
@@ -45,7 +43,6 @@ class Product extends Connection implements iCRUD
         );
 
         $req->execute();
-
     }
 
     public function get_product_info($id)

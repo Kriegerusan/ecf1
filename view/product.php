@@ -6,7 +6,6 @@ require_once '../controller/ProductController.php';
 $productCtrl = new ProductController();
 $productCtrl->show_products();
 
-if(isset($_GET)){
+if (isset($_GET)) {
     $productCtrl->add_product($_GET);
-
 }

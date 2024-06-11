@@ -29,7 +29,9 @@
     </div>
   </nav>
 
-  <?php if (isset($_SESSION['user'])){ if($_SESSION['user']['privileges'] == "admin") {
-    require_once 'nav_admin.html';
-  }} ?>
+  <?php if (isset($_SESSION['user'])) {
+    if ($_SESSION['user']['privileges'] == "admin") {
+      require_once 'nav_admin.html';
+    }
+  } ?>
 </header>

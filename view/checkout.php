@@ -42,7 +42,11 @@ if (isset($_GET['checkout']) && isset($_SESSION['cart'])) {
     <input type='hidden' name='totalPrice' value='<?php echo $cart->get_totalPrice() ?>'>
     <input type='hidden' name='totalArticle' value='<?php echo $cart->get_totalArticle() ?>'>
     <button name='clearCart' class='btn btn-danger'>Effacer Panier</button>
-    <button name='checkout' class='btn btn-success' <?php if (!isset($_SESSION['user'])) { echo "disabled"; } else { ""; } ?>>Valider Panier</button>
+    <button name='checkout' class='btn btn-success' <?php if (!isset($_SESSION['user'])) {
+                                                        echo "disabled";
+                                                    } else {
+                                                        "";
+                                                    } ?>>Valider Panier</button>
 
 </form>
 <?php if (!isset($_SESSION['user'])) {

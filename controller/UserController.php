@@ -8,35 +8,26 @@ class UserController
         $user = new User();
         $record = $user->get_user($email);
 
-        if ($record == null) 
-        {
+        if ($record == null) {
             echo "Aucun utilisateur trouvé.";
-        }
-        else 
-        {
+        } else {
             if (password_verify($password, $record['password'])) {
                 echo "Identification reussie.";
-                if(!isset($_SESSION)){
+                if (!isset($_SESSION)) {
                     session_start();
                 }
                 $_SESSION['user'] = $record;
                 header("location: ../index.php");
-            } 
-            else if ($record['password'] == $password)
-            {
+            } else if ($record['password'] == $password) {
                 echo "Identification reussie, mot de passe obsolete.";
-                if(!isset($_SESSION)){
+                if (!isset($_SESSION)) {
                     session_start();
                 }
                 $_SESSION['user'] = $record;
                 header("location: ../index.php");
-            }
-            else
-            {
+            } else {
                 echo "Identification echouée.";
             }
-
-            
         }
     }
 
@@ -45,6 +36,5 @@ class UserController
         $newUser = new User();
         $datas['password'] = password_hash($datas['password'], PASSWORD_DEFAULT);
         $newUser->create_user($datas);
-
     }
 }

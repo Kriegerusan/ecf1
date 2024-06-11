@@ -1,0 +1,14 @@
+ECF 1 DWWM 0424
+
+I.
+Creation de DB au nom "commerce".
+Creation d'une table au nom "utilisateur" avec champs (id, email, password, name, firstname).
+Creation d'une table au nom "produit" avec champs (id, name, price).
+
+Creation d'une page catalogue comportant les articles.
+Listage des produit avec details et boutton "commander".
+
+Creation d'une table au nom "commande" avec champs (id, id_user, id_product).
+ajout FK id_user -> user.id , id_product -> product.id
+
+II.
